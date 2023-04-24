@@ -43,8 +43,7 @@ def getChar(nextChar):
     else:
         return 'UNKNOWN'
 #lex is the main part of the scanner. It uses the other methods to help generate the next token and next lexeme. 
-def lex(nextString):
-    x = 0
+def lex(nextString,x):
     nextString = nextString.strip()
     while x < len(nextString):
         identity = getChar(nextString[x])
@@ -99,12 +98,13 @@ token_list = []
 element_list = []
 token = 0
 next_token = 0
+x = 0
 #we open the file and store every line to a list called the_text
 the_file = open('C:/ConceptsProject/COP-Project/Example.txt','r')
 the_text = the_file.readlines()
 #now we can iterate through the list with a for loop calling lex on each element in the list.
 for c in the_text:
-    lex(c)
+    lex(c,x)
 #now we can print tokens and the lexemes as needed. 
 for c in element_list:
     print("Next token is: " + str(c.token) + " Next Lexeme is: " + str(c.lexeme))

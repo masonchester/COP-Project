@@ -1,0 +1,11 @@
+example grammar:
+<expr> → <term> {(+ | -) <term>}
+<term> → <factor> {(* | /) <factor>}
+<factor> → id | int_constant | ( <expr> )
+
+<def>
+<if>
+<else>
+<return>
+<term>
+<factor>
