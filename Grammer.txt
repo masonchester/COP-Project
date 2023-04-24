@@ -1,11 +1,19 @@
 example grammar:
-<expr> → <term> {(+ | -) <term>}
-<term> → <factor> {(* | /) <factor>}
-<factor> → id | int_constant | ( <expr> )
 
-<def>
-<if>
-<else>
-<return>
-<term>
-<factor>
+<program> ::= <function-def> <input-statements> <output-statement>
+<function-def> ::= "def" <function-name> "(" <parameter-list> ")" ":" <function-body>
+<function-name> ::= <identifier>
+<parameter-list> ::= <parameter> | <parameter> "," <parameter-list>
+<parameter> ::= <identifier>
+<function-body> ::= <if-statement> | <return-statement>
+<if-statement> ::= "if" <condition> ":" <statement>
+<condition> ::= <identifier> "==" <string-literal>
+<statement> ::= <return-statement>
+<return-statement> ::= "return" <add-or-divide>
+<add-or-divide> ::= <addition> | <division>
+<addition> ::= "int(" <identifier> ") + int(" <identifier> ")"
+<division> ::= "int(" <identifier> ") / int(" <identifier> ")"
+<input-statements> ::= <input-statement> | <input-statement> <input-statements>
+<input-statement> ::= <identifier> "=" "input(" <string-literal> ")"
+<output-statement> ::= "print(" <function-call> ")"
+<function-call> ::= <function-name> "(" <identifier> "," <identifier> "," <string-literal> ")"
