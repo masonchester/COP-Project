@@ -72,6 +72,8 @@ def lex(nextString,the_position):
             return e1
         the_position += 1
 
+    
+
 #We declare some variables that we can use in the method.
 
 the_position = 0
