@@ -82,15 +82,21 @@ class Parser():
     # parse the entire input string
     def parse(self):
         results = self.statement()
-
+        the_variables.append(results)
+        while self.current_token.lexeme == '\n' or self.current_token.lexeme != 'EOF':
+            self.current_token = get_next_token(self.input_string, True)
+            if self.current_token.token != 'EOF':
+                results = self.statement()
+                the_variables.append(results)
         # check if there are any tokens left
         if self.current_token.lexeme != 'EOF':
             raise Exception('Invalid syntax')
-
         return results
-
-p = Parser('x = 2 + (5 * 3)')
-
+the_file = open('C:\ConceptsProject\COP-Project\Example.txt')
+the_text = the_file.read()
+p = Parser(the_text)
+the_variables = []
 result = p.parse()
 
-print(result)
+for x in the_variables:
+    print(x)
