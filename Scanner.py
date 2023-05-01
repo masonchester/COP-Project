@@ -28,7 +28,7 @@ def lookup(the_character):
     elif the_character == ',':
         next_token = 29
     else:
-        return -1;
+        return -1
     return next_token
 #getChar is used to identify what class the next character is.
 def getChar(nextChar):
@@ -77,23 +77,18 @@ def lex(nextString,the_position):
 the_position = 0
 #we open the file and store every line to a list called the_text
 the_file = open('C:/ConceptsProject/COP-Project/Example.txt','r')
-#continue flag is used to control the outer while loop.
-continue_flag = True
 #we read the file so we can 
 the_text = the_file.read()
-while continue_flag == True:
-    #scan through and keep the position of where we are in the file.
-    while the_position < len(the_text):
-       #lex returns an object with the token and lexeme.
-       result = lex(the_text,the_position)
-       #we update position each time so the next call is not at the wrong position.
-       the_position = result.position
-       #if result.token is -1 we know its not a character we want.
-       if result.token != '-1':
+#scan through and keep the position of where we are in the file.
+while the_position < len(the_text):
+    #lex returns an object with the token and lexeme.
+    result = lex(the_text,the_position)
+    #we update position each time so the next call is not at the wrong position.
+    the_position = result.position
+    #if result.token is -1 we know its not a character we want.
+    if result.token != '-1':
         print('next token is: ' + str(result.token) + " Next Lexeme is: " + str(result.lexeme))
-        #if the_position is equal to the length of the text we are done.
-    if the_position == len(the_text):
-        continue_flag = False
+
 
 
 
