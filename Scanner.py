@@ -73,14 +73,12 @@ def lex(nextString):
             e1 = element(str(nextToken),nextString[the_position],temp_position)
             return e1
         the_position += 1
-
+#get next token is used by the parser to call lex and get the next part of the statement.
 def get_next_token(the_text):
     result = lex(the_text)
     global the_position
     the_position = result.position
     return result
-#We declare some variables that we can use in the method.
-
 
 #we open the file and store every line to a list called the_text
 the_file = open('C:/ConceptsProject/COP-Project/Example.txt','r')
