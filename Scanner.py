@@ -1,3 +1,4 @@
+the_position = 0
 #element class is used to hold the token and the lexeme in 1 object.
 class element:
     def __init__(self, token,lexeme,position):
@@ -42,7 +43,8 @@ def getChar(nextChar):
     else:
         return 'UNKNOWN'
 #lex is the main part of the scanner. It uses the other methods to help generate the next token and next lexeme. 
-def lex(nextString,the_position):
+def lex(nextString):
+    global the_position
     while the_position < len(nextString):
         identity = getChar(nextString[the_position])
         #if the next character is a letter then we to parse through and build the lexeme. 
@@ -72,23 +74,23 @@ def lex(nextString,the_position):
             return e1
         the_position += 1
 
+def get_next_token(the_text):
+    result = lex(the_text)
+    global the_position
+    the_position = result.position
+    return result
 #We declare some variables that we can use in the method.
 
-the_position = 0
+
 #we open the file and store every line to a list called the_text
 the_file = open('C:/ConceptsProject/COP-Project/Example.txt','r')
 #we read the file so we can 
 the_text = the_file.read()
-#scan through and keep the position of where we are in the file.
-while the_position < len(the_text):
-    #lex returns an object with the token and lexeme.
-    result = lex(the_text,the_position)
-    #we update position each time so the next call is not at the wrong position.
-    the_position = result.position
-    #if result.token is -1 we know its not a character we want.
-    if result.token != '-1':
-        print('next token is: ' + str(result.token) + " Next Lexeme is: " + str(result.lexeme))
 
+result = get_next_token(the_text)
+print(result.token + " " + result.lexeme)
+result = get_next_token(the_text)
+print(result.token + " " + result.lexeme)
 
 
 
