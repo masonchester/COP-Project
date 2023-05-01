@@ -74,21 +74,17 @@ def lex(nextString):
             return e1
         the_position += 1
 #get next token is used by the parser to call lex and get the next part of the statement.
-def get_next_token(the_text):
-    result = lex(the_text)
+def get_next_token(the_text,move_position):
     global the_position
+    if move_position == False:
+        temp = the_position
+        result = lex(the_text)
+        the_position = the_position = temp
+        return result
+    result = lex(the_text)
     the_position = result.position
     return result
 
-#we open the file and store every line to a list called the_text
-the_file = open('C:/ConceptsProject/COP-Project/Example.txt','r')
-#we read the file so we can 
-the_text = the_file.read()
-
-result = get_next_token(the_text)
-print(result.token + " " + result.lexeme)
-result = get_next_token(the_text)
-print(result.token + " " + result.lexeme)
 
 
 
