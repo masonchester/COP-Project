@@ -10,6 +10,8 @@ class Parser():
         token = self.current_token
 
         # check if the token is an integer or an identifier
+       
+        
         if token.token == 'INT_LIT':
             self.current_token = get_next_token(self.input_string, True)
             return int(token.lexeme)
@@ -82,12 +84,12 @@ class Parser():
         results = self.statement()
 
         # check if there are any tokens left
-        if self.current_token.token != -1:
+        if self.current_token.lexeme != 'EOF':
             raise Exception('Invalid syntax')
 
         return results
 
-p = Parser('x = 3 * (4 + 5)')
+p = Parser('x = 2 + (5 * 3)')
 
 result = p.parse()
 

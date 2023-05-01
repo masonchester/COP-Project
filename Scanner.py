@@ -59,7 +59,7 @@ def lex(nextString):
         # if the identity is of type DIGIT then we need to capture all the components of the number and put them into one lexeme. 
         elif identity == 'DIGIT':
            temp = ''
-           while(the_position < len(nextString) and getChar(nextString[the_position]) != 'SPACE'):
+           while(the_position < len(nextString) and getChar(nextString[the_position]) != 'SPACE' and getChar(nextString[the_position]) != 'UNKNOWN'):
                 if(getChar(nextString[the_position]) == 'DIGIT'):
                     temp += nextString[the_position]
                 the_position += 1
@@ -75,14 +75,18 @@ def lex(nextString):
 #get next token is used by the parser to call lex and get the next part of the statement.
 def get_next_token(the_text,move_position):
     global the_position
-    if move_position == False:
-        temp = the_position
+    if len(the_text) != the_position:
+        if move_position == False:
+            temp = the_position
+            result = lex(the_text)
+            the_position = the_position = temp
+            return result
         result = lex(the_text)
-        the_position = the_position = temp
+        the_position = result.position
         return result
-    result = lex(the_text)
-    the_position = result.position
-    return result
+    else:
+        result = element('EOF', 'EOF',the_position)
+        return result
 
 
 
