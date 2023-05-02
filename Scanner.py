@@ -93,8 +93,15 @@ def get_next_token(the_text,move_position):
     else:
         result = element('EOF', 'EOF',the_position)
         return result
-
-
+    
+#Test the scanner
+#the_file = open('C:\ConceptsProject\COP-Project\Example.txt')
+#the_text = the_file.read()
+#result = get_next_token(the_text,True)
+#print("Next token: " + result.token + " Next Lexeme: " + result.lexeme)
+#while result.token != 'EOF':
+    #result = get_next_token(the_text,True)
+    #print("Next token: " + result.token + " Next Lexeme: " + result.lexeme)
 
 
 
