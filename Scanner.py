@@ -74,16 +74,22 @@ def lex(nextString):
         the_position += 1
 #get next token is used by the parser to call lex and get the next part of the statement.
 def get_next_token(the_text,move_position):
+#we use the global position variable so anytime the get_next_token method is called it automatically keeps track of our
+# position in the file. 
     global the_position
+    # if the length of the text is equal to the positon we are done and will hit the else statement.
     if len(the_text) != the_position:
+        #otherwise we check if move position is false this essentilly allows us to peek the next token without updating the position variable.
         if move_position == False:
             temp = the_position
             result = lex(the_text)
             the_position = the_position = temp
             return result
+        #if move position is true then we will update the position and return the resulting element that contains the token and lexeme
         result = lex(the_text)
         the_position = result.position
         return result
+    #when the else statement is hit we return an element with EOF for both attributes telling the parser there is nothing left to parse.
     else:
         result = element('EOF', 'EOF',the_position)
         return result
